@@ -1,0 +1,19 @@
+.button {
+  width: 14rem;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  font-family: var(--font-family);
+  font-weight: 400;
+  border-radius: 1rem;
+  padding: 10px 2px;
+  border: none;
+}
+
+.button__blue {
+  background-color: var(--button-blue);
+  color: var(--color-white);
+}
+.button__red {
+  background-color: var(--button-red);
+  color: var(--color-white);
+}
