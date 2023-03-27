@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.cart-icon__badge {
+  font-size: 1.4rem !important;
+  color: var(--color-white) !important;
+}
 .cart-icon__header {
   margin: 2rem 3rem 0 3rem;
 }

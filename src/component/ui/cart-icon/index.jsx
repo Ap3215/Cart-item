@@ -3,27 +3,24 @@ import React, { useState, useEffect } from "react";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { Offcanvas, Badge } from "react-bootstrap";
 
-import { CartState } from "../../../context/context";
+import { useCart } from "../../../context/context";
+import { calculateCartTotal } from "../../../utils";
+
 import classes from "./index.module.css";
 
 const CartIcon = () => {
   const [show, setShow] = useState(false);
-  const [total, setTotal] = useState(0);
 
-  const {
-    state: { cart },
-  } = CartState();
-
-  useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
-    // console.log(total);
-  }, [cart]);
+  const { cart } = useCart();
 
   return (
     <div className={classes["cart-icon"]}>
-      <MdOutlineAddShoppingCart onClick={() => setShow(true)}>
-        <Badge bg="primary">{cart.length}</Badge>
-      </MdOutlineAddShoppingCart>
+      <MdOutlineAddShoppingCart
+        onClick={() => setShow(true)}
+      ></MdOutlineAddShoppingCart>
+      <Badge className={classes["cart-icon__badge"]} bg="primary">
+        {cart.length}
+      </Badge>
       <Offcanvas show={show} onHide={() => setShow(false)} placement="end">
         <Offcanvas.Header className={classes["cart-icon__header"]} closeButton>
           <Offcanvas.Title className={classes["cart-icon__title"]}>
@@ -64,7 +61,7 @@ const CartIcon = () => {
                 ))}
               </ul>
               <div className={classes["cart-icon__total--price"]}>
-                Total: ${total}
+                Total: ${calculateCartTotal(cart)}
               </div>
             </>
           ) : (

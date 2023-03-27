@@ -3,15 +3,12 @@ import React from "react";
 // import { combineClasses } from "../../../utils";
 // import Button from "../button";
 import { Button } from "react-bootstrap";
-import { CartState } from "../../../context/context";
+import { useCart } from "../../../context/context";
 
 import classes from "./index.module.css";
 
 const Card = ({ product }) => {
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  const { cart, addItemToCart, removeItemFromCart } = useCart();
   // console.log(cart);
   return (
     <div className={classes["card"]}>
@@ -29,7 +26,7 @@ const Card = ({ product }) => {
           <Button
             color="red"
             onClick={() => {
-              dispatch({ type: "Remove_FROM_CART", payload: product });
+              removeItemFromCart(product);
             }}
             variant="danger"
           >
@@ -38,7 +35,7 @@ const Card = ({ product }) => {
         ) : (
           <Button
             onClick={() => {
-              dispatch({ type: "ADD_TO_CART", payload: product });
+              addItemToCart(product);
             }}
           >
             Add to Cart

@@ -3,14 +3,14 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import Header from "./component/feature/header";
-import ProductCart from "./component/feature/product-cart";
+import Gallery from "./component/feature/Gallery";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Header />
-        <ProductCart />
+        <Gallery />
       </BrowserRouter>
     </>
   );
